@@ -68,3 +68,7 @@ This is a file database in this topic: [**Dataset**](https://drive.google.com/dr
 ![11](https://github.com/user-attachments/assets/e7ca467e-0e69-40c8-b888-2f5a53755a10)
 ![12](https://github.com/user-attachments/assets/deea6bee-98d0-44f4-9f37-46bdd9299830)
 ![13](https://github.com/user-attachments/assets/c8aa4b15-755f-401a-acd0-80e8f0933dab)
+
+## III. Insight
+
+## IV. Recommendations
