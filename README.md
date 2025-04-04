@@ -130,22 +130,38 @@ This is a file database in this topic: [**Dataset**](https://drive.google.com/dr
             - Cannot Lose Them Segment: The sales mean rose dramatically from 28.30 (2010) to 74.60 (2011), reinforcing the importance of this high-value group.
             - At Risk Segment: Despite avg_order_value increasing, sales mean decreased from 19.93 (2010) to 15.25 (2011), indicating a decline in purchase frequency or basket size.
             - About To Sleep & New Customers: Both experienced a drop in sales mean, suggesting reduced purchasing activity, which could indicate disengagement.
-          
-    **Recommendations**:
-
-  1. Strengthen Loyalty for High-Potential Segments
-    - Prioritize Cannot Lose Them and Promising Segments with personalized offers, loyalty programs, and premium experiences.
-    - Implement cross-sell and upsell strategies to maximize revenue from these engaged groups.
-  2. Focus on High-Potential Segments
-    - Promissing Segment:
-PLeverage their growth momentum by introducing loyalty programs or exclusive offers.
-Expand product to targeted at this segment's preferences
-Cannot Lose Them Segment:
-Invest in personalized marketing stratedgies and prioritize customer service for this group
-Strengthen Retention Strategies for Hibernating & Lost Customers
-Offer campaigns aimed at reactivating these segments, discounts or exclusive sales.
-Analyze their purchasing history to identify products that previously resonated with them and highlight these in campaigns.
-Re-engage Declining Segments
-Investigate reasons for declining sales mean through surveys or feedback campaigns.
-Reconnect with customers through personalized offers or incentives to reactivate engagement.
+              
+    - Recommendation:
+        - Strengthen Loyalty for High-Potential Segments
+            - Prioritize Cannot Lose Them and Promising Segments with personalized offers, loyalty programs, and premium experiences.
+            - Implement cross-sell and upsell strategies to maximize revenue from these engaged groups.
+        - Focus on High-Potential Segments
+            - Promissing Segment:
+                - PLeverage their growth momentum by introducing loyalty programs or exclusive offers.
+                - Expand product to targeted at this segment's preferences
+            - Cannot Lose Them Segment:
+                - Invest in personalized marketing stratedgies and prioritize customer service for this group
+            - Strengthen Retention Strategies for Hibernating & Lost Customers
+                - Offer campaigns aimed at reactivating these segments, discounts or exclusive sales.
+                - Analyze their purchasing history to identify products that previously resonated with them and highlight these in campaigns.
+            - Re-engage Declining Segments
+                - Investigate reasons for declining sales mean through surveys or feedback campaigns.
+                - Reconnect with customers through personalized offers or incentives to reactivate engagement.
+    - Total Quantity and OPU
+        - Significant Growth in Total Quantity:
+            - All customer segments show a notable increase in total quantity from 2010 to 2011, particularly:
+            - At Risk: From 28,825 to 360,182 (over 10x growth).
+            - Need Attention and Promising: Both segments also exhibit large jumps in order volumes.
+        - Order Per Unit by Segment:
+            - The Lost Customers segment consistently has the highest "order per unit" ratio, increasing from 1.13 (2010) to 1.19 (2011), suggesting effective retention or focused engagement strategies for this group.
+            - The At Risk and Cannot Lose Them segments see a decrease in the "order per unit" ratio.
+            - New Customers experienced a significant drop in their order-per-unit ratio from 1.50 in 2010 to 0.85 in 2011
+    - Recommendations:
+        - Focus on Retaining High-Value Segments
+            - Target At Risk and Cannot Lose Them customers with personalized promotions or loyalty incentives to address the declining order-per-unit trend.
+            - Use tailored communication to re-engage Need Attention customers who show growth potential.
+        - Improve Efficiency for New Customers
+            - Implement onboarding campaigns or early-stage rewards to increase engagement and orders-per-unit for New Customers.
+        - Leverage Insights from Top Performers
+            - Investigate what works well with Lost Customers who have the highest efficiency, and apply similar techniques to lower-performing groups.
 
