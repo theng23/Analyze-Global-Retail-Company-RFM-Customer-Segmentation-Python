@@ -9,22 +9,22 @@ Please see the coding file attached or reach this link: [RFM_Project_Python](htt
 ### 2. Dataset
 This is a file database in this topic: [**Dataset**](https://drive.google.com/drive/u/0/folders/1hguyL961Nfi8AeCFeq-3dzHdGOkhTHkS)
 - Ecommerce retail: <br>
-    | Field Name | Data Type |
-    |-------|-------|
-    |InvoiceNo|STRING|
-    |StockCode|STRING|
-    |Description|STRING|
-    |Quantity|INTEGER|
-    |InvoiceDate|DATETIME|
-    |UnitPrice|FLOAT|
-    |CustomerID|STRING|
-    |Country|STRING|
+    | Field Name | Data Type | Description |
+    |-------|-------|-------|
+    |InvoiceNo|STRING| Invoice number. Nominal, a 6-digit integral number uniquely assigned to each transaction. If this code starts with letter 'C', it indicates a cancellation.|
+    |StockCode|STRING|Product (item) code. Nominal, a 5-digit integral number uniquely assigned to each distinct product.|
+    |Description|STRING| Product (item) name. Nominal.|
+    |Quantity|INTEGER|The quantities of each product (item) per transaction. Numeric.|
+    |InvoiceDate|DATETIME|Invoice Date and time. Numeric, the day and time when each transaction was generated.|
+    |UnitPrice|FLOAT|Unit price. Numeric, Product price per unit in sterling.|
+    |CustomerID|STRING|Customer number. Nominal, a 5-digit integral number uniquely assigned to each customer.|
+    |Country|STRING|Country name. Nominal, the name of the country where each customer resides.|
   
 - Sementation: <br>
-    | Field Name | Data Type |
-    |-------|-------|
-    |Segment|STRING|
-    |RFM Score|STRING|
+    | Field Name | Data Type | Description |
+    |-------|-------|-------|
+    |Segment|STRING|Segment of Customer|
+    |RFM Score|STRING|Score of RFM|
 
 ### 3. RFM Model
 - RFM is a method used for analyzing customer value. It is commonly used in database marketing and direct marketing and has received particular attention in retail and professional services industries
