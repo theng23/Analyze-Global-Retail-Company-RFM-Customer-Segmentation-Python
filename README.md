@@ -1,4 +1,4 @@
-# Python_RFM_Analysis-Customer-segmentation
+# RFM-Customer-Segmentation
 Please see the coding file attached or reach this link: [RFM_Project_Python](https://colab.research.google.com/drive/17Dlv4VH-F0KqEzzVcZJPbQCjav0JJ4wl#scrollTo=M3_yuk2uBScA)
 
 ## I. Introduction
