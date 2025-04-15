@@ -36,7 +36,7 @@ This is a file database in this topic: [**Dataset**](https://drive.google.com/dr
 
 </details>
   
-Sementation: <br>
+Table 2: Sementation: <br>
 | Field Name | Data Type | Description |
 |-------|-------|-------|
 |Segment|STRING|Segment of Customer|
