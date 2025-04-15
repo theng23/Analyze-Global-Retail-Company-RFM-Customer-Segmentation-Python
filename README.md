@@ -1,7 +1,7 @@
 # 📊 Analyze Global Retail Company RFM Customer Segmentation| Python, GoogleColab
 Please see the coding file attached or reach this link: [RFM_Project_Python](https://colab.research.google.com/drive/17Dlv4VH-F0KqEzzVcZJPbQCjav0JJ4wl#scrollTo=M3_yuk2uBScA)
 
-## I. Introduction
+## 📑 I. Introduction
 ### 📖 What is this project about?
 - SuperStore is a global retail company. The Marketing Department wants to run marketing campaigns during the Christmas and New Year holidays to thank customers for their past support of the company. In addition, potential customers can be upgraded to become loyal customers.
 - The Marketing Director proposed a plan to run RFM Model in Python to segment customers and then launch appropriate marketing campaigns.
