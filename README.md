@@ -118,8 +118,14 @@ e_retail[e_retail['UnitPrice']<0]
 
 ![7c3b6ec8-3724-4467-83d4-71f9ba6c864e](https://github.com/user-attachments/assets/ee20dc5d-7907-4aa8-8c02-327406ed205e)
 
-Checking `Unitprice < 0` and reason why `Unitprice < 0` is "Adjust bad debt"
+Checking `Unitprice < 0` and reason `Unitprice < 0` is "Adjust bad debt"
 
+```python
+#Cleaning UnitPrice and Description
+e_retail = e_retail[e_retail['UnitPrice'] >= 0]
+e_retail = e_retail[e_retail['Description'] != '<Na>']
+```
+Handle abnormal data values from `Quantity` and `Description`
 
 ## III. Data Visualization with Python
 ### Visulization RFM Segment
