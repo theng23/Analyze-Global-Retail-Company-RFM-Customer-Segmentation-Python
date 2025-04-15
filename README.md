@@ -1,39 +1,127 @@
-# Analyze Global Retail Company RFM Customer Segmentation| Python, GoogleColab
+# 📊 Analyze Global Retail Company RFM Customer Segmentation| Python, GoogleColab
 Please see the coding file attached or reach this link: [RFM_Project_Python](https://colab.research.google.com/drive/17Dlv4VH-F0KqEzzVcZJPbQCjav0JJ4wl#scrollTo=M3_yuk2uBScA)
 
 ## I. Introduction
-### 1. Business Question 
+### 📖 What is this project about?
 - SuperStore is a global retail company. The Marketing Department wants to run marketing campaigns during the Christmas and New Year holidays to thank customers for their past support of the company. In addition, potential customers can be upgraded to become loyal customers.
 - The Marketing Director proposed a plan to run RFM Model in Python to segment customers and then launch appropriate marketing campaigns.
 - Recommendation for Marketing and Sales Team: With the company's retail model, which of three indicators R,F,M shoulde be given the most attention?
-### 2. Dataset
-This is a file database in this topic: [**Dataset**](https://drive.google.com/drive/u/0/folders/1hguyL961Nfi8AeCFeq-3dzHdGOkhTHkS)
-- Ecommerce retail: <br>
-    | Field Name | Data Type | Description |
-    |-------|-------|-------|
-    |InvoiceNo|STRING| Invoice number. Nominal, a 6-digit integral number uniquely assigned to each transaction. If this code starts with letter 'C', it indicates a cancellation.|
-    |StockCode|STRING|Product (item) code. Nominal, a 5-digit integral number uniquely assigned to each distinct product.|
-    |Description|STRING| Product (item) name. Nominal.|
-    |Quantity|INTEGER|The quantities of each product (item) per transaction. Numeric.|
-    |InvoiceDate|DATETIME|Invoice Date and time. Numeric, the day and time when each transaction was generated.|
-    |UnitPrice|FLOAT|Unit price. Numeric, Product price per unit in sterling.|
-    |CustomerID|STRING|Customer number. Nominal, a 5-digit integral number uniquely assigned to each customer.|
-    |Country|STRING|Country name. Nominal, the name of the country where each customer resides.|
-  
-- Sementation: <br>
-    | Field Name | Data Type | Description |
-    |-------|-------|-------|
-    |Segment|STRING|Segment of Customer|
-    |RFM Score|STRING|Score of RFM|
+### ❓ Business Question 
+- How can the Marketing department classify customer segments effectively to deploy tailored for each **customer segment** to run marketing campaigns for Christmas and New Year, appreciating loyal customers and attracting potential ones?
+- How can the **RFM (Recency, Frequency, Monetary)** model be used to segment customers and optimize marketing strategies for higher engagement and revenue?
 
-### 3. RFM Model
+### 📌 RFM Model
 - RFM is a method used for analyzing customer value. It is commonly used in database marketing and direct marketing and has received particular attention in retail and professional services industries
 - RFM Model
     - Recency (R): How recently a customer made a purchase. Customers who made purchases more recently are typically more engaged and likely to buy again.
     - Frequency (F): How often a customer makes purchases within a given period. Frequent buyers are usually more loyal and valuable to a business.
     - Monetary (M): How much money a customer spends in total. High spenders contribute significantly to revenue and can be prioritized for premium services or offers.
 - RFM analysis numerically ranks a customer in each of these three categories, generally on a scale of 1 to 5 (the higher the number, the better the result). The “best” customer would receive a top score in every category.
-## II. Data Visualization with Python
+  
+### 📂2. Dataset
+This is a file database in this topic: [**Dataset**](https://drive.google.com/drive/u/0/folders/1hguyL961Nfi8AeCFeq-3dzHdGOkhTHkS)
+<details> 
+<summary>Table 1: Ecommerce retail:</summary>
+
+| Field Name | Data Type | Description |
+|-------|-------|-------|
+|InvoiceNo|STRING| Invoice number. Nominal, a 6-digit integral number uniquely assigned to each transaction. If this code starts with letter 'C', it indicates a cancellation.|
+|StockCode|STRING|Product (item) code. Nominal, a 5-digit integral number uniquely assigned to each distinct product.|
+|Description|STRING| Product (item) name. Nominal.|
+|Quantity|INTEGER|The quantities of each product (item) per transaction. Numeric.|
+|InvoiceDate|DATETIME|Invoice Date and time. Numeric, the day and time when each transaction was generated.|
+|UnitPrice|FLOAT|Unit price. Numeric, Product price per unit in sterling.|
+|CustomerID|STRING|Customer number. Nominal, a 5-digit integral number uniquely assigned to each customer.|
+|Country|STRING|Country name. Nominal, the name of the country where each customer resides.|
+
+</details>
+  
+Sementation: <br>
+| Field Name | Data Type | Description |
+|-------|-------|-------|
+|Segment|STRING|Segment of Customer|
+|RFM Score|STRING|Score of RFM|
+
+## ⚒️ II.Main Process
+1️⃣ Load Dataset
+```python
+e_retail = pd.read_excel(Path + '/ecommerce retail.xlsx',sheet_name= 'ecommerce retail')
+e_retail.head(5)
+```
+
+![9e0d5280-ded5-43da-b91c-78c3d0c95b81](https://github.com/user-attachments/assets/4597f6de-6925-4f60-8468-a0a394b227b4)
+
+
+
+2️⃣ Exploratory Data Analysis (EDA)
+```python
+e_retail.info()
+print('----------')
+e_retail.describe()
+```
+
+![d941aeb8-c468-4c34-a163-78d9035728e3](https://github.com/user-attachments/assets/12678fb7-482a-4b2b-a7c0-56a03b79d43b)
+
+
+#### Summary of pre-processing steps
+➡️ Convert Datatype: <br>
+- Columns: `InvoiceNO`, `StockCode`, `Description`, `CustomerID`, `Country` converted to String for consistency.
+    
+➡️ Remove invalid data: <br>
+Remove records that have:
+- `Quantity < 0 `
+- `UnitPrice < 0`
+- `Cancel_list = True`
+- `Description` is missing value. Next step: Replace missing value `nan`, `Nan`, `<NA>` to `None`
+
+#### Detect value
+
+```python
+e_retail[e_retail['Quantity']<0]
+```
+
+![f5649a0f-623f-4a9f-a4dd-dd3f32f47cdd](https://github.com/user-attachments/assets/fb0c64db-f11a-4fc2-b60d-fcfe51993241)
+
+
+```python
+# The symbol C in "InvoiceN0" means the order is canceled. Check if the Quantity is negative, is the order canceled?
+# Create a column to check the cancellation status of the data
+e_retail['Cancel_list'] = e_retail['InvoiceNo'].apply(lambda x: True if str(x)[0] == 'C' else False)
+e_retail[(e_retail['Quantity']<0) & (e_retail['Cancel_list'] == True)].head(10)
+```
+Create Cancel_list to check Cancel InvoiceN0
+
+```python
+# KCheck for False Cancel orders and quantity < 0
+e_retail[(e_retail['Quantity']<0) & (e_retail['Cancel_list'] == False)].head(10)
+```
+![674bb826-61ed-456f-8869-c06feedd8037](https://github.com/user-attachments/assets/0565fbcc-26e7-4d6a-bba3-9e7a84cd70eb)
+
+
+Check reason why `Cancel_list = False` and `Quantity < 0`
+
+![1e1bc705-d8ab-4e1a-994d-8ef5b00ea1c0](https://github.com/user-attachments/assets/c8ebf7a7-32ff-45e3-9519-ee8466da0afa)
+
+
+```python
+#Handle abnormal data values
+e_retail = e_retail[e_retail['Quantity']>=0]
+e_retail = e_retail[e_retail['Cancel_list'] == False] 
+
+```
+Drop `Cancel_list = False` and `Quantity <0` to clean data
+
+
+```python
+e_retail[e_retail['UnitPrice']<0]
+```
+
+![7c3b6ec8-3724-4467-83d4-71f9ba6c864e](https://github.com/user-attachments/assets/ee20dc5d-7907-4aa8-8c02-327406ed205e)
+
+Checking `Unitprice < 0` and reason why `Unitprice < 0` is "Adjust bad debt"
+
+
+## III. Data Visualization with Python
 ### Visulization RFM Segment
 - Visualize Average Recency by RFM Segment
   
