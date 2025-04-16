@@ -543,4 +543,21 @@ plt.show()
 
 ## 🔎 III. Insight and Recommendations
 
+| Segment             | Description                                           | Recommendation                                                 |
+|---------------------|------------------------------------------------------|--------------------------------------------------------------|
+| **Champions**       | High purchase frequency and value                    | Reward them, ask for feedback, and promote referrals.<br>➡ Keep them loyal.<br>➡ Utilize their feedback to improve products and services. |
+| **Loyal**          | Consistently buy but aren't highest spenders          | Offer exclusive deals and loyalty programs.<br>➡ Encourage them to buy more. |
+| **Potential Loyalist** | Recently purchased, potential to become loyal     | Encourage repeat purchases with personalized offers.<br>➡ Strengthen engagement. |
+| **New Customers**  | Recently made their first purchase                    | Provide exceptional service and follow-up.<br>➡ Make a great first impression to drive retention. |
+| **Promising**      | Interested but hasn't made a significant purchase     | Targeted marketing campaigns and promotions.<br>➡ Encourage first-time purchases. |
+| **Need Attention** | Used to buy frequently but slowed down                | Re-engage with offers and direct communication.<br>➡ Understand reasons for decreased frequency. |
+| **About To Sleep** | At risk of becoming inactive                          | Send reminders and reactivation incentives.<br>➡ Encourage repurchasing. |
+| **At Risk**       | Haven’t purchased in a while, close to inactivity     | Actively re-engage with strong offers and personal outreach.<br>➡ Encourage repurchasing. |
+| **Cannot Lose Them** | High-paying customers, about to leave              | Immediate action with offers and excellent service.<br>➡ Address concerns and retain them. |
+| **Hibernating**    | Haven’t purchased for a long time                     | Win-back campaigns to understand inactivity.<br>➡ Encourage repurchasing. |
+| **Lost**          | No engagement or purchases for a long time            | Decide whether to re-engage or focus on new acquisition.<br>➡ Send reminder messages. |
+
+
+
+
 
