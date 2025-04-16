@@ -74,6 +74,15 @@ Remove records that have:
 - `Cancel_list = True`
 - `Description` is missing value. Next step: Replace missing value `nan`, `Nan`, `<NA>` to `None`
 
+➡️ Handle missing value:
+- Check missing value and `CustomerID` is missing.\
+👉🏻 Next action Delete `CustomerID` missing as RFM analysis is not possible for these customer
+
+➡️ Handle duplicate value:
+- While detect value kind of columns: `InvoiceNo`, `StockCode`, `InvoiceDate`, `CustomerID` is duplicated value.\
+👉🏻 Next action -> Delete duplicated value. This ensures that each transaction is only counted once in the RFM analysis.
+
+
 #### Detect value
 
 ```python
@@ -126,6 +135,115 @@ e_retail = e_retail[e_retail['UnitPrice'] >= 0]
 e_retail = e_retail[e_retail['Description'] != '<Na>']
 ```
 Handle abnormal data values from `Quantity` and `Description`
+
+
+```python
+#Check missing value
+missing_value = {
+                 'volume': e_retail.isnull().sum(),
+                 'percent':e_retail.isnull().sum()/ (e_retail.shape[0])
+                 }
+missing_value = pd.DataFrame(missing_value)
+missing_value
+```
+![e1eb0a23-0366-4630-957a-ece40b65b754](https://github.com/user-attachments/assets/fce1b201-0ae7-4113-830c-1b8e1dce3051)
+
+
+
+
+```python
+#Handle missing value
+e_retail = e_retail[e_retail['CustomerID'].notnull()]
+```
+
+
+```python
+#Check duplicate
+dup_retail = e_retail[e_retail.duplicated(subset = ['InvoiceNo','StockCode','InvoiceDate','CustomerID'], keep = 'first')]
+dup_retail.head()
+```
+
+```python
+#Handle duplicate and final dataframe
+final_retail = e_retail.drop_duplicates(subset = ['InvoiceNo','StockCode','InvoiceDate','CustomerID'], keep = 'first')
+final_retail.head()
+
+```
+
+```python
+#Create cost, day, month, year
+final_retail['cost'] = final_retail['Quantity'] * final_retail['UnitPrice']
+final_retail['Day'] = final_retail['InvoiceDate'].dt.day
+final_retail['Month'] = final_retail['InvoiceDate'].dt.month
+final_retail['Year'] = final_retail['InvoiceDate'].dt.year
+final_retail.head()
+```
+Create `cost`, `Day`, `Month`, `Year` to prepare for data process step
+
+```python
+final_retail.info()
+```
+
+![fc2f6020-79a6-475c-8b31-b512c8846b88](https://github.com/user-attachments/assets/22e1b1af-36cc-4ed2-b094-d38370f765f1)
+
+👉 Dataframe after detect and Expoloratory Data Analysis
+
+
+#### 🔥 Data Process
+
+```python
+#Calculate Recency, Frequency, Monetory
+RFM = final_retail.groupby('CustomerID').agg({'InvoiceDate': lambda x: (final_retail['InvoiceDate'].max() - x.max()).days,
+                                              'InvoiceNo': lambda x: len(x),
+                                              'cost': lambda x: x.sum()
+
+                                            }).reset_index()
+RFM.columns = ['CustomerID','Recency','Frequency','Monetary']
+RFM.head(10)
+```
+Define Recency, Frenquency, Monetoray in RFM dataframe
+
+
+```python
+#Get R, F, M score by using qcut
+#Get label for qcut
+lab_des = [5,4,3,2,1]
+lab_asc = [1,2,3,4,5]
+
+#Using qcut
+#qcut is a function used to divide data into equal-sized bins based on quantiles
+RFM['R'] = pd.qcut(RFM['Recency'], q = 5, labels = lab_des) #Score desc
+RFM['F'] = pd.qcut(RFM['Frequency'], q = 5, labels = lab_asc)
+RFM['M'] = pd.qcut(RFM['Monetary'], q = 5, labels = lab_asc)
+RFM['RFM'] = RFM['R'].astype(str) + RFM['F'].astype(str) + RFM['M'].astype(str)
+RFM['RFM'] = RFM['RFM'].astype('string')
+RFM.head(5)
+```
+
+![a0925824-934e-4eda-bb56-c22e7d1c3fa8](https://github.com/user-attachments/assets/10a35ade-963c-4678-b3f8-7bf8ace4be30)
+
+👉 Apply quintile by using qcut in Python to divide the dataset into 5 ranges:
+
+```python
+Segmentation = pd.read_excel('ecommerce_retail.xlsx',sheet_name= 'Segmentation')
+RFM_final = RFM.merge(Segmentation, how = 'left', left_on = 'RFM', right_on = 'RFM Score')
+RFM_final.head(10)
+```
+
+👉 Merge `Segmentation` and `RFM` to segment customer by `RFM Score`
+
+```python
+RFM_final.describe()
+```
+
+![5e79ffef-d537-435c-a9a7-abd732d00cf1](https://github.com/user-attachments/assets/cb6c1bd1-7eb0-4ffb-a1b4-2e4d6cb49325)
+
+- Recency (R): The median is 50 days, but the wide range (min 0, max 373) indicates a mix of active and inactive customers.
+- Frequency (F): The average is 89 purchases, but the max reaches 7477, suggesting a small portion of highly engaged customers driving most transactions.
+- Monetary (M): The median spending is 658.64, but the max is 280,206, hinting at the presence of a few extremely high-value customers.
+
+**Recommendation**
+Since a small percentage of customers contribute significantly to revenue, focus on loyalty programs or exclusive offers for frequent and high-spending customers to maximize retention. Meanwhile, inactive customers (high recency, low frequency) could be re-engaged through personalized promotions or reminder emails.
 
 ## III. Data Visualization with Python
 ### Visulization RFM Segment
