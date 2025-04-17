@@ -1,5 +1,5 @@
 # 📊 Analyze Global Retail Company RFM Customer Segmentation| Python, GoogleColab
-Please see the coding file attached or reach this link: [RFM_Project_Python](https://colab.research.google.com/drive/17Dlv4VH-F0KqEzzVcZJPbQCjav0JJ4wl#scrollTo=M3_yuk2uBScA)
+Please see the coding file attached or reach this link: [RFM_Project_Python](https://colab.research.google.com/drive/1pxnY2NHd4LTVtel8CfGKe0O8-RmtdqwL?usp=sharing)
 
 ## 📑 I. Introduction
 ### 📖 What is this project about?
